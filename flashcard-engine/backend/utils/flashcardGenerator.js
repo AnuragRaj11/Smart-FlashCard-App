@@ -40,7 +40,7 @@ Return ONLY the JSON array, no other text.`;
       const flashcards = JSON.parse(jsonMatch[0]);
       console.log(`✅ Generated ${flashcards.length} flashcards using Gemini`);
       return flashcards;
-    }
+    } 
     
     throw new Error('No JSON array found in response');
     
