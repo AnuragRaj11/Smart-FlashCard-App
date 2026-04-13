@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import API_URL from "../config.js";
 
 const DeckBrowser = ({ decks, onSelectDeck, onReview, onBack, refreshDecks }) => {
   const [search, setSearch] = useState("");
@@ -7,10 +8,10 @@ const DeckBrowser = ({ decks, onSelectDeck, onReview, onBack, refreshDecks }) =>
   const [deletingAll, setDeletingAll] = useState(false);
 
   const handleDelete = async (deckId, deckName) => {
-    if (window.confirm(`Are you sure you want to delete "${deckName}" and all its flashcards?`)) {
+    if (window.confirm(`Delete "${deckName}" and all its flashcards?`)) {
       setDeletingId(deckId);
       try {
-        const response = await fetch(`http://localhost:5000/api/delete/deck/${deckId}`, {
+        const response = await fetch(`${API_URL}/api/delete/deck/${deckId}`, {
           method: "DELETE",
         });
         
@@ -33,7 +34,7 @@ const DeckBrowser = ({ decks, onSelectDeck, onReview, onBack, refreshDecks }) =>
     if (window.confirm("⚠️ DELETE ALL DECKS AND FLASHCARDS? This cannot be undone! ⚠️")) {
       setDeletingAll(true);
       try {
-        const response = await fetch(`http://localhost:5000/api/delete/all`, {
+        const response = await fetch(`${API_URL}/api/delete/all`, {
           method: "DELETE",
         });
         

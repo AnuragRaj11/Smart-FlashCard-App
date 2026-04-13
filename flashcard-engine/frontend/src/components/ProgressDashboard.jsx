@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import API_URL from "../config.js";
 
 const ProgressDashboard = ({ deckId }) => {
   const [stats, setStats] = useState(null);
@@ -6,7 +7,7 @@ const ProgressDashboard = ({ deckId }) => {
 
   const fetchStats = useCallback(async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/stats/deck/${deckId}`);
+      const res = await fetch(`${API_URL}/api/stats/deck/${deckId}`);
       const data = await res.json();
       setStats(data);
     } catch (error) {

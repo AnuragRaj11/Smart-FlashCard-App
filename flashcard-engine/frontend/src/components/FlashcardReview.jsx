@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import API_URL from "../config.js";
 
 const FlashcardReview = ({ deck, onComplete, onBack }) => {
   const [cards, setCards] = useState([]);
@@ -8,7 +9,7 @@ const FlashcardReview = ({ deck, onComplete, onBack }) => {
 
   const fetchCards = useCallback(async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/flashcards/due/${deck.deckId}`);
+      const res = await fetch(`${API_URL}/api/flashcards/due/${deck.deckId}`);
       const data = await res.json();
       setCards(data);
     } catch (error) {
@@ -25,7 +26,7 @@ const FlashcardReview = ({ deck, onComplete, onBack }) => {
   const handleRating = async (quality) => {
     const card = cards[currentIndex];
     try {
-      await fetch(`http://localhost:5000/api/review/${card._id}`, {
+      await fetch(`${API_URL}/api/review/${card._id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ quality })

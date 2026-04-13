@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import DeckBrowser from "./components/DeckBrowser.jsx";
 import ProgressDashboard from "./components/ProgressDashboard.jsx";
 import FlashcardReview from "./components/FlashcardReview.jsx";
+import API_URL from "./config.js";
+
 function App() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -17,7 +19,7 @@ function App() {
 
   const fetchDecks = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/decks");
+      const res = await fetch(`${API_URL}/api/decks`);
       const data = await res.json();
       setDecks(data);
     } catch (error) {
@@ -36,7 +38,7 @@ function App() {
     formData.append("pdf", file);
 
     try {
-      const res = await fetch("http://localhost:5000/api/upload", {
+      const res = await fetch(`${API_URL}/api/upload`, {
         method: "POST",
         body: formData,
       });
