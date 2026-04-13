@@ -1,5 +1,3 @@
-# Create README.md
-
 # 📚 Smart Flashcard Engine
 
 > Turn any PDF into intelligent flashcards with AI-powered spaced repetition
@@ -27,7 +25,7 @@
 - MongoDB (local or Atlas)
 - npm or yarn
 
-### Installation
+```
 
 flashcard-engine/
 ├── backend/
@@ -57,15 +55,14 @@ flashcard-engine/
 │   │   └── index.css        # Global styles
 │   └── package.json
 └── README.md
-
-
-🤝 Contributing
+```
+## 🤝 Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-📝 License
+## 📝 License
 This project is licensed under the MIT License.
 
-🙏 Acknowledgments
+## 🙏 Acknowledgments
 Cuemath for the project inspiration
 
 SM-2 algorithm by SuperMemo
