@@ -29,14 +29,6 @@
 
 ### Installation
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/flashcard-engine.git
-cd flashcard-engine
-
-cd backend
-npm install
-
 flashcard-engine/
 ├── backend/
 │   ├── models/
@@ -65,6 +57,7 @@ flashcard-engine/
 │   │   └── index.css        # Global styles
 │   └── package.json
 └── README.md
+
 
 🤝 Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
