@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const FlashcardReview = ({ deck, onComplete, onBack }) => {
   const [cards, setCards] = useState([]);
@@ -6,11 +6,7 @@ const FlashcardReview = ({ deck, onComplete, onBack }) => {
   const [flipped, setFlipped] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchCards();
-  }, [deck]);
-
-  const fetchCards = async () => {
+  const fetchCards = useCallback(async () => {
     try {
       const res = await fetch(`http://localhost:5000/api/flashcards/due/${deck.deckId}`);
       const data = await res.json();
@@ -20,7 +16,11 @@ const FlashcardReview = ({ deck, onComplete, onBack }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [deck.deckId]);
+
+  useEffect(() => {
+    fetchCards();
+  }, [fetchCards]);
 
   const handleRating = async (quality) => {
     const card = cards[currentIndex];

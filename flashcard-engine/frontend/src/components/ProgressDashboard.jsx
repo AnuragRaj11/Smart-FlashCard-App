@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const ProgressDashboard = ({ deckId }) => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (deckId) {
-      fetchStats();
-    }
-  }, [deckId]);
-
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     try {
       const res = await fetch(`http://localhost:5000/api/stats/deck/${deckId}`);
       const data = await res.json();
@@ -20,7 +14,13 @@ const ProgressDashboard = ({ deckId }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [deckId]);
+
+  useEffect(() => {
+    if (deckId) {
+      fetchStats();
+    }
+  }, [fetchStats, deckId]);
 
   if (loading) {
     return (
